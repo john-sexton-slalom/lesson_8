@@ -12,6 +12,7 @@ import {
   PointElement,
   Tooltip,
 } from 'chart.js'
+import type { ScriptableLineSegmentContext } from 'chart.js'
 import metricsData from './data/metrics.json'
 
 type MetricRow = {
@@ -128,22 +129,49 @@ const getSummaryCards = computed(() => {
   ]
 })
 
-const chartRows = computed(() => {
-  if (selectedMonth.value === 'all') {
-    return metrics
-  }
+const chartRows = metrics
+const selectedChartIndex = computed(() =>
+  selectedMonth.value === 'all'
+    ? -1
+    : chartRows.findIndex((entry) => entry.month === selectedMonth.value),
+)
 
-  return metrics.filter((entry) => entry.month === selectedMonth.value)
-})
+const lineSegmentColor = (color: string) => (context: ScriptableLineSegmentContext) => {
+  const index = selectedChartIndex.value
+  if (index < 0 || context.p0DataIndex === index || context.p1DataIndex === index) {
+    return color
+  }
+  return 'rgba(148, 163, 184, 0.3)'
+}
+
+const pointStyle = (color: string) =>
+  chartRows.map((_, index) =>
+    selectedChartIndex.value < 0 || index === selectedChartIndex.value
+      ? color
+      : 'rgba(148, 163, 184, 0.3)',
+  )
+
+const pointRadius = () =>
+  chartRows.map((_, index) =>
+    selectedChartIndex.value < 0 ? 4 : index === selectedChartIndex.value ? 7 : 2,
+  )
 
 const revenueChartData = computed(() => ({
-  labels: chartRows.value.map((row) => row.month.replace(' 2025', '')),
+  labels: chartRows.map((row) => row.month.replace(' 2025', '')),
   datasets: [
     {
       label: 'Revenue',
-      data: chartRows.value.map((row) => row.revenue),
-      backgroundColor: 'rgba(139, 92, 246, 0.18)',
-      borderColor: '#8b5cf6',
+      data: chartRows.map((row) => row.revenue),
+      backgroundColor: chartRows.map((_, index) =>
+        selectedChartIndex.value < 0 || index === selectedChartIndex.value
+          ? 'rgba(139, 92, 246, 0.85)'
+          : 'rgba(139, 92, 246, 0.2)',
+      ),
+      borderColor: chartRows.map((_, index) =>
+        selectedChartIndex.value < 0 || index === selectedChartIndex.value
+          ? '#8b5cf6'
+          : 'rgba(139, 92, 246, 0.35)',
+      ),
       borderWidth: 2,
       borderRadius: 10,
       maxBarThickness: 28,
@@ -152,35 +180,47 @@ const revenueChartData = computed(() => ({
 }))
 
 const visitorChartData = computed(() => ({
-  labels: chartRows.value.map((row) => row.month.replace(' 2025', '')),
+  labels: chartRows.map((row) => row.month.replace(' 2025', '')),
   datasets: [
     {
       label: 'Visitors',
-      data: chartRows.value.map((row) => row.visitors),
+      data: chartRows.map((row) => row.visitors),
       borderColor: '#34d399',
-      backgroundColor: 'rgba(52, 211, 153, 0.18)',
+      segment: {
+        borderColor: lineSegmentColor('#34d399'),
+      },
+      backgroundColor:
+        selectedChartIndex.value < 0 ? 'rgba(52, 211, 153, 0.18)' : 'rgba(52, 211, 153, 0.06)',
       fill: true,
       borderWidth: 3,
       tension: 0.35,
-      pointBackgroundColor: '#34d399',
-      pointRadius: 4,
+      pointBackgroundColor: pointStyle('#34d399'),
+      pointBorderColor: pointStyle('#34d399'),
+      pointBorderWidth: 2,
+      pointRadius: pointRadius(),
     },
   ],
 }))
 
 const conversionChartData = computed(() => ({
-  labels: chartRows.value.map((row) => row.month.replace(' 2025', '')),
+  labels: chartRows.map((row) => row.month.replace(' 2025', '')),
   datasets: [
     {
       label: 'Conversion rate',
-      data: chartRows.value.map((row) => row.conversions),
+      data: chartRows.map((row) => row.conversions),
       borderColor: '#fbbf24',
-      backgroundColor: 'rgba(251, 191, 36, 0.18)',
+      segment: {
+        borderColor: lineSegmentColor('#fbbf24'),
+      },
+      backgroundColor:
+        selectedChartIndex.value < 0 ? 'rgba(251, 191, 36, 0.18)' : 'rgba(251, 191, 36, 0.06)',
       fill: true,
       borderWidth: 3,
       tension: 0.35,
-      pointBackgroundColor: '#fbbf24',
-      pointRadius: 4,
+      pointBackgroundColor: pointStyle('#fbbf24'),
+      pointBorderColor: pointStyle('#fbbf24'),
+      pointBorderWidth: 2,
+      pointRadius: pointRadius(),
     },
   ],
 }))
@@ -196,7 +236,12 @@ const baseChartOptions = {
   scales: {
     x: {
       grid: { display: false },
-      ticks: { color: '#cbd5e1' },
+      ticks: {
+        color: (context: { tick: { value: number } }) =>
+          selectedChartIndex.value < 0 || context.tick.value === selectedChartIndex.value
+            ? '#e2e8f0'
+            : '#64748b',
+      },
     },
     y: {
       grid: { color: 'rgba(148, 163, 184, 0.12)' },
@@ -210,7 +255,12 @@ const areaChartOptions = {
   scales: {
     x: {
       grid: { display: false },
-      ticks: { color: '#cbd5e1' },
+      ticks: {
+        color: (context: { tick: { value: number } }) =>
+          selectedChartIndex.value < 0 || context.tick.value === selectedChartIndex.value
+            ? '#e2e8f0'
+            : '#64748b',
+      },
     },
     y: {
       grid: { color: 'rgba(148, 163, 184, 0.12)' },
