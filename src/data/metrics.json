@@ -1,86 +1,194 @@
 [
   {
     "month": "Jan 2025",
-    "revenue": 46800,
-    "visitors": 12600,
-    "conversions": 3.1,
-    "orders": 392
+    "freightWeightLbs": 54874400,
+    "regions": [
+      { "name": "East", "shipments": 11800, "onTimeShipments": 11375 },
+      { "name": "Central", "shipments": 10100, "onTimeShipments": 9514 },
+      { "name": "West", "shipments": 8860, "onTimeShipments": 8187 },
+      { "name": "South", "shipments": 7480, "onTimeShipments": 7113 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 320,
+      "Pickup issue": 140,
+      "Documentation": 175,
+      "Damage": 38
+    }
   },
   {
     "month": "Feb 2025",
-    "revenue": 49200,
-    "visitors": 13250,
-    "conversions": 3.3,
-    "orders": 420
+    "freightWeightLbs": 53184600,
+    "regions": [
+      { "name": "East", "shipments": 11120, "onTimeShipments": 10653 },
+      { "name": "Central", "shipments": 9460, "onTimeShipments": 8873 },
+      { "name": "West", "shipments": 8470, "onTimeShipments": 7869 },
+      { "name": "South", "shipments": 7130, "onTimeShipments": 6759 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 340,
+      "Pickup issue": 155,
+      "Documentation": 190,
+      "Damage": 42
+    }
   },
   {
     "month": "Mar 2025",
-    "revenue": 53800,
-    "visitors": 14180,
-    "conversions": 3.4,
-    "orders": 470
+    "freightWeightLbs": 61185200,
+    "regions": [
+      { "name": "East", "shipments": 12450, "onTimeShipments": 11977 },
+      { "name": "Central", "shipments": 10320, "onTimeShipments": 9711 },
+      { "name": "West", "shipments": 9580, "onTimeShipments": 8948 },
+      { "name": "South", "shipments": 8170, "onTimeShipments": 7786 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 365,
+      "Pickup issue": 168,
+      "Documentation": 205,
+      "Damage": 45
+    }
   },
   {
     "month": "Apr 2025",
-    "revenue": 56400,
-    "visitors": 15320,
-    "conversions": 3.7,
-    "orders": 540
+    "freightWeightLbs": 62162100,
+    "regions": [
+      { "name": "East", "shipments": 12840, "onTimeShipments": 12391 },
+      { "name": "Central", "shipments": 10750, "onTimeShipments": 10159 },
+      { "name": "West", "shipments": 9850, "onTimeShipments": 9229 },
+      { "name": "South", "shipments": 8420, "onTimeShipments": 8041 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 350,
+      "Pickup issue": 160,
+      "Documentation": 192,
+      "Damage": 41
+    }
   },
   {
     "month": "May 2025",
-    "revenue": 58600,
-    "visitors": 16850,
-    "conversions": 3.9,
-    "orders": 610
+    "freightWeightLbs": 66589600,
+    "regions": [
+      { "name": "East", "shipments": 13100, "onTimeShipments": 12589 },
+      { "name": "Central", "shipments": 11050, "onTimeShipments": 10464 },
+      { "name": "West", "shipments": 10360, "onTimeShipments": 9738 },
+      { "name": "South", "shipments": 8730, "onTimeShipments": 8302 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 380,
+      "Pickup issue": 174,
+      "Documentation": 215,
+      "Damage": 49
+    }
   },
   {
     "month": "Jun 2025",
-    "revenue": 63400,
-    "visitors": 18240,
-    "conversions": 4.2,
-    "orders": 700
+    "freightWeightLbs": 71289600,
+    "regions": [
+      { "name": "East", "shipments": 13700, "onTimeShipments": 13138 },
+      { "name": "Central", "shipments": 11480, "onTimeShipments": 10814 },
+      { "name": "West", "shipments": 10750, "onTimeShipments": 10062 },
+      { "name": "South", "shipments": 9190, "onTimeShipments": 8721 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 415,
+      "Pickup issue": 195,
+      "Documentation": 226,
+      "Damage": 52
+    }
   },
   {
     "month": "Jul 2025",
-    "revenue": 67900,
-    "visitors": 19410,
-    "conversions": 4.5,
-    "orders": 780
+    "freightWeightLbs": 75402900,
+    "regions": [
+      { "name": "East", "shipments": 14160, "onTimeShipments": 13494 },
+      { "name": "Central", "shipments": 11920, "onTimeShipments": 11181 },
+      { "name": "West", "shipments": 11240, "onTimeShipments": 10431 },
+      { "name": "South", "shipments": 9660, "onTimeShipments": 9177 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 462,
+      "Pickup issue": 218,
+      "Documentation": 248,
+      "Damage": 58
+    }
   },
   {
     "month": "Aug 2025",
-    "revenue": 71200,
-    "visitors": 20180,
-    "conversions": 4.8,
-    "orders": 860
+    "freightWeightLbs": 75842880,
+    "regions": [
+      { "name": "East", "shipments": 14380, "onTimeShipments": 13661 },
+      { "name": "Central", "shipments": 12180, "onTimeShipments": 11449 },
+      { "name": "West", "shipments": 11420, "onTimeShipments": 10564 },
+      { "name": "South", "shipments": 9780, "onTimeShipments": 9262 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 490,
+      "Pickup issue": 232,
+      "Documentation": 260,
+      "Damage": 63
+    }
   },
   {
     "month": "Sep 2025",
-    "revenue": 69300,
-    "visitors": 19620,
-    "conversions": 4.3,
-    "orders": 810
+    "freightWeightLbs": 68115600,
+    "regions": [
+      { "name": "East", "shipments": 13380, "onTimeShipments": 12684 },
+      { "name": "Central", "shipments": 11310, "onTimeShipments": 10665 },
+      { "name": "West", "shipments": 10610, "onTimeShipments": 9878 },
+      { "name": "South", "shipments": 9220, "onTimeShipments": 8704 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 438,
+      "Pickup issue": 205,
+      "Documentation": 242,
+      "Damage": 56
+    }
   },
   {
     "month": "Oct 2025",
-    "revenue": 64500,
-    "visitors": 18280,
-    "conversions": 4.1,
-    "orders": 720
+    "freightWeightLbs": 65540800,
+    "regions": [
+      { "name": "East", "shipments": 13250, "onTimeShipments": 12614 },
+      { "name": "Central", "shipments": 11080, "onTimeShipments": 10404 },
+      { "name": "West", "shipments": 10320, "onTimeShipments": 9639 },
+      { "name": "South", "shipments": 9190, "onTimeShipments": 8712 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 420,
+      "Pickup issue": 198,
+      "Documentation": 230,
+      "Damage": 51
+    }
   },
   {
     "month": "Nov 2025",
-    "revenue": 68800,
-    "visitors": 18840,
-    "conversions": 3.8,
-    "orders": 690
+    "freightWeightLbs": 71032400,
+    "regions": [
+      { "name": "East", "shipments": 13750, "onTimeShipments": 13159 },
+      { "name": "Central", "shipments": 11420, "onTimeShipments": 10746 },
+      { "name": "West", "shipments": 10830, "onTimeShipments": 10072 },
+      { "name": "South", "shipments": 9680, "onTimeShipments": 9215 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 445,
+      "Pickup issue": 210,
+      "Documentation": 239,
+      "Damage": 58
+    }
   },
   {
     "month": "Dec 2025",
-    "revenue": 75800,
-    "visitors": 21450,
-    "conversions": 3.6,
-    "orders": 760
+    "freightWeightLbs": 79801200,
+    "regions": [
+      { "name": "East", "shipments": 14820, "onTimeShipments": 14227 },
+      { "name": "Central", "shipments": 12340, "onTimeShipments": 11674 },
+      { "name": "West", "shipments": 11880, "onTimeShipments": 11191 },
+      { "name": "South", "shipments": 10220, "onTimeShipments": 9760 }
+    ],
+    "exceptionCategories": {
+      "In-transit delay": 398,
+      "Pickup issue": 185,
+      "Documentation": 221,
+      "Damage": 47
+    }
   }
 ]
