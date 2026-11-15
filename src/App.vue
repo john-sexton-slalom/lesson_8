@@ -225,6 +225,52 @@ const conversionChartData = computed(() => ({
   ],
 }))
 
+const ordersChartData = computed(() => ({
+  labels: chartRows.map((row) => row.month.replace(' 2025', '')),
+  datasets: [
+    {
+      label: 'Orders',
+      data: chartRows.map((row) => row.orders),
+      backgroundColor: chartRows.map((_, index) =>
+        selectedChartIndex.value < 0 || index === selectedChartIndex.value
+          ? 'rgba(56, 189, 248, 0.85)'
+          : 'rgba(56, 189, 248, 0.2)',
+      ),
+      borderColor: chartRows.map((_, index) =>
+        selectedChartIndex.value < 0 || index === selectedChartIndex.value
+          ? '#38bdf8'
+          : 'rgba(56, 189, 248, 0.35)',
+      ),
+      borderWidth: 2,
+      borderRadius: 10,
+      maxBarThickness: 28,
+    },
+  ],
+}))
+
+const averageOrderValueChartData = computed(() => ({
+  labels: chartRows.map((row) => row.month.replace(' 2025', '')),
+  datasets: [
+    {
+      label: 'Average order value',
+      data: chartRows.map((row) => row.revenue / row.orders),
+      borderColor: '#c084fc',
+      segment: {
+        borderColor: lineSegmentColor('#c084fc'),
+      },
+      backgroundColor:
+        selectedChartIndex.value < 0 ? 'rgba(192, 132, 252, 0.18)' : 'rgba(192, 132, 252, 0.06)',
+      fill: true,
+      borderWidth: 3,
+      tension: 0.35,
+      pointBackgroundColor: pointStyle('#c084fc'),
+      pointBorderColor: pointStyle('#c084fc'),
+      pointBorderWidth: 2,
+      pointRadius: pointRadius(),
+    },
+  ],
+}))
+
 const baseChartOptions = {
   responsive: true,
   maintainAspectRatio: false,
@@ -246,6 +292,34 @@ const baseChartOptions = {
     y: {
       grid: { color: 'rgba(148, 163, 184, 0.12)' },
       ticks: { color: '#cbd5e1' },
+    },
+  },
+}
+
+const ordersChartOptions = {
+  ...baseChartOptions,
+  scales: {
+    ...baseChartOptions.scales,
+    y: {
+      ...baseChartOptions.scales.y,
+      ticks: {
+        color: '#cbd5e1',
+        callback: (value: string | number) => numberFormatter.format(Number(value)),
+      },
+    },
+  },
+}
+
+const averageOrderValueChartOptions = {
+  ...baseChartOptions,
+  scales: {
+    ...baseChartOptions.scales,
+    y: {
+      ...baseChartOptions.scales.y,
+      ticks: {
+        color: '#cbd5e1',
+        callback: (value: string | number) => formatCurrency(Number(value)),
+      },
     },
   },
 }
@@ -391,6 +465,32 @@ const currentMonthLabel = computed(() => {
               </div>
               <div style="height: 280px">
                 <Line :data="conversionChartData" :options="areaChartOptions" />
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+
+        <v-row class="mt-2">
+          <v-col cols="12" md="6">
+            <v-card rounded="xl" class="pa-4 chart-card h-100">
+              <div class="d-flex align-center justify-space-between mb-4">
+                <div class="text-h6 font-weight-bold">Monthly orders</div>
+                <v-chip color="info" size="small" variant="flat">Orders</v-chip>
+              </div>
+              <div style="height: 280px">
+                <Bar :data="ordersChartData" :options="ordersChartOptions" />
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="6">
+            <v-card rounded="xl" class="pa-4 chart-card h-100">
+              <div class="d-flex align-center justify-space-between mb-4">
+                <div class="text-h6 font-weight-bold">Average order value</div>
+                <v-chip color="accent" size="small" variant="flat">USD / order</v-chip>
+              </div>
+              <div style="height: 280px">
+                <Line :data="averageOrderValueChartData" :options="averageOrderValueChartOptions" />
               </div>
             </v-card>
           </v-col>
